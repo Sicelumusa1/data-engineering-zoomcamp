@@ -43,6 +43,22 @@ services:
     networks:
       - ny_taxi_network
 
+  
+  zone_data:
+    depends_on:
+      - pgdatabase
+    image: zones:v001
+    container_name: zones
+    command: >
+      --pg-user=root
+      --pg-pass=root
+      --pg-host=pgdatabase
+      --pg-port=5432
+      --pg-db=ny_taxi
+      --target-table=zones
+    networks:
+      - ny_taxi_network
+
 volumes:
   ny_taxi_postgres_data:
   pgadmin_data:
